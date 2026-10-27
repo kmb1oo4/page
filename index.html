@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내덕초등학교 Lara쌤의 즐거운 영어교실 🔤</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Jua&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4F46E5',
+                        'secondary': '#F59E0B',
+                        'accent': '#10B981',
+                        'candy-pink': '#F472B6',
+                        'candy-blue': '#38BDF8',
+                    },
+                    fontFamily: {
+                        jua: ['Jua', 'sans-serif'],
+                        gowun: ['Gowun Dodum', 'sans-serif'],
+                        nunito: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Gowun Dodum', sans-serif; }
+        .font-jua { font-family: 'Jua', sans-serif; }
+        .font-en { font-family: 'Nunito', sans-serif; }
+        
+        .card-flip {
+            perspective: 1000px;
+        }
+        .card-flip-inner {
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card-flip.flipped .card-flip-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            backface-visibility: hidden;
+        }
+        .card-back {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body class="bg-amber-50/50 text-slate-800 min-h-screen flex flex-col">
+
+    <!-- Header / Navbar -->
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b-4 border-yellow-400 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-yellow-400 rounded-2xl flex items-center justify-center text-2xl shadow-md transform -rotate-3 hover:rotate-0 transition">
+                    🏫
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-jua text-indigo-900 tracking-wide">내덕초 영어교실</h1>
+                    <p class="text-xs text-indigo-500 font-bold">Lara쌤과 함께 즐겁게 배우는 English World ✨</p>
+                </div>
+            </div>
+
+            <nav class="hidden md:flex space-x-2">
+                <a href="#voca-section" class="px-4 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 font-jua text-indigo-700 transition flex items-center gap-1">
+                    📖 학년별 영단어
+                </a>
+                <a href="#quiz-section" class="px-4 py-2 rounded-xl bg-pink-50 hover:bg-pink-100 font-jua text-pink-700 transition flex items-center gap-1">
+                    🧩 퀴즈 게임
+                </a>
+                <a href="#meal-section" class="px-4 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 font-jua text-amber-700 transition flex items-center gap-1">
+                    🍱 오늘의 급식
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-6xl mx-auto px-4 py-8 flex-grow space-y-10">
+
+        <!-- Lara쌤 환영 히어로 섹션 -->
+        <section class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-3xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
+            <div class="absolute -right-6 -bottom-6 text-9xl opacity-10 pointer-events-none">✏️</div>
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+                <div class="space-y-4 max-w-xl text-center md:text-left">
+                    <span class="inline-block px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-xs font-bold tracking-widest uppercase">
+                        Welcome to Lara's Class!
+                    </span>
+                    <h2 class="text-3xl md:text-4xl font-jua leading-tight">
+                        안녕, 내덕초 친구들! 👋<br>오늘도 <span class="text-yellow-300">Lara쌤</span>과 신나게 단어 공부해볼까?
+                    </h2>
+                    <p class="text-indigo-100 text-sm md:text-base leading-relaxed">
+                        3학년부터 6학년까지 매일 5개씩 단어를 익혀보세요! 단어 소리도 듣고, 퀴즈도 풀고, 오늘 내덕초 맛있는 급식 메뉴도 바로 확인할 수 있어요.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3 justify-center md:justify-start">
+                        <button onclick="scrollToSection('voca-section')" class="px-5 py-2.5 bg-yellow-400 hover:bg-yellow-300 text-indigo-950 font-jua rounded-2xl shadow-lg transition transform hover:-translate-y-0.5">
+                            📚 단어 공부 시작하기
+                        </button>
+                        <button onclick="scrollToSection('meal-section')" class="px-5 py-2.5 bg-white/20 hover:bg-white/30 backdrop-blur-sm text-white font-jua rounded-2xl transition">
+                            🍱 오늘 급식 확인
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Lara쌤 캐릭터 프로필 카드 -->
+                <div class="bg-white/95 text-slate-800 p-5 rounded-3xl shadow-2xl w-full max-w-xs border-4 border-yellow-300 transform md:rotate-2 hover:rotate-0 transition duration-300">
+                    <div class="flex items-center space-x-4 mb-3">
+                        <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center text-3xl shadow-inner border-2 border-pink-300">
+                            👩‍🏫
+                        </div>
+                        <div>
+                            <span class="text-xs bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full font-bold">내덕초 영어전담</span>
+                            <h3 class="text-xl font-jua text-indigo-900">Lara 선생님</h3>
+                            <p class="text-xs text-slate-500">"Practice makes perfect! ✨"</p>
+                        </div>
+                    </div>
+                    <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-900 leading-relaxed">
+                        <p class="font-bold mb-1">📢 Today's Message:</p>
+                        "하루 5개의 단어가 모여 모험의 큰 열쇠가 된단다. 오늘 급식 맛있게 먹고 활기차게 시작하자! 💕"
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 1. 학년별 일일 영단어 섹션 -->
+        <section id="voca-section" class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b">
+                <div>
+                    <h2 class="text-2xl font-jua text-slate-800 flex items-center gap-2">
+                        <span class="text-2xl">📚</span> 학년별 일일 영단어
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">학년을 선택하고 매일 새로운 단어 카드와 소리를 함께 학습해요.</p>
+                </div>
+
+                <!-- 학년 선택 탭 -->
+                <div class="flex flex-wrap gap-2" id="grade-tabs">
+                    <button onclick="setGrade(3)" id="tab-3" class="grade-tab px-4 py-2 rounded-2xl font-jua text-sm transition bg-indigo-600 text-white shadow-md">3학년</button>
+                    <button onclick="setGrade(4)" id="tab-4" class="grade-tab px-4 py-2 rounded-2xl font-jua text-sm transition bg-slate-100 text-slate-600 hover:bg-indigo-50">4학년</button>
+                    <button onclick="setGrade(5)" id="tab-5" class="grade-tab px-4 py-2 rounded-2xl font-jua text-sm transition bg-slate-100 text-slate-600 hover:bg-indigo-50">5학년</button>
+                    <button onclick="setGrade(6)" id="tab-6" class="grade-tab px-4 py-2 rounded-2xl font-jua text-sm transition bg-slate-100 text-slate-600 hover:bg-indigo-50">6학년</button>
+                </div>
+            </div>
+
+            <!-- 컨트롤 옵션 -->
+            <div class="flex justify-between items-center mb-6 bg-slate-50 p-3 rounded-2xl">
+                <span id="current-grade-label" class="text-sm font-bold text-indigo-700 font-jua">
+                    [3학년] Lara쌤이 추천하는 오늘의 5단어
+                </span>
+                <div class="flex items-center gap-3">
+                    <label class="inline-flex items-center cursor-pointer text-xs font-bold text-slate-600">
+                        <input type="checkbox" id="toggle-meaning" onchange="toggleMeanings()" class="sr-only peer">
+                        <div class="w-9 h-5 bg-slate-300 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-indigo-600 relative"></div>
+                        <span class="ml-2">뜻 가리기</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- 단어 카드 리스트 Grid -->
+            <div id="voca-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                <!-- JS에서 동적 생성 -->
+            </div>
+        </section>
+
+        <!-- 2. 영단어 퀴즈 게임 섹션 -->
+        <section id="quiz-section" class="bg-gradient-to-br from-pink-500 to-rose-500 rounded-3xl p-6 md:p-8 text-white shadow-xl">
+            <div class="text-center max-w-xl mx-auto space-y-3 mb-6">
+                <span class="px-3 py-1 bg-white/20 rounded-full text-xs font-bold uppercase tracking-widest">Mini Game</span>
+                <h2 class="text-3xl font-jua">🧩 Lara쌤의 단어 맞추기 퀴즈!</h2>
+                <p class="text-xs md:text-sm text-pink-100">오늘 배운 단어로 실력을 확인해 보세요! 준비되었나요?</p>
+            </div>
+
+            <div id="quiz-card" class="bg-white text-slate-800 rounded-2xl p-6 max-w-md mx-auto shadow-2xl text-center space-y-6">
+                <div class="flex justify-between items-center text-xs text-slate-400 font-bold border-b pb-3">
+                    <span id="quiz-progress">문제 1 / 5</span>
+                    <span id="quiz-score" class="text-indigo-600 font-jua text-sm">점수: 0점</span>
+                </div>
+
+                <div class="space-y-2">
+                    <p class="text-xs text-pink-500 font-bold">다음 영어 단어의 뜻은 무엇일까요?</p>
+                    <h3 id="quiz-word" class="text-3xl font-extrabold text-indigo-900 font-en tracking-wide">word</h3>
+                    <button id="quiz-tts-btn" class="text-xs bg-indigo-50 hover:bg-indigo-100 text-indigo-600 px-3 py-1 rounded-full font-bold transition">
+                        🔊 소리 듣기
+                    </button>
+                </div>
+
+                <div id="quiz-options" class="grid grid-cols-1 gap-2 pt-2">
+                    <!-- 퀴즈 보기 동적 생성 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. 공공 API 내덕초 급식 정보 섹션 -->
+        <section id="meal-section" class="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-100">
+            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6 pb-4 border-b">
+                <div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-2xl">🍱</span>
+                        <h2 class="text-2xl font-jua text-slate-800">오늘의 내덕초등학교 급식</h2>
+                        <span class="bg-green-100 text-green-700 text-xs font-bold px-2.5 py-0.5 rounded-full border border-green-300">나이스 API 실시간</span>
+                    </div>
+                    <p class="text-xs text-slate-500 mt-1">교육부 공공데이터 API를 이용해 영양 만점 내덕초 급식을 가져옵니다.</p>
+                </div>
+
+                <!-- 날짜 선택 컨트롤 -->
+                <div class="flex items-center space-x-2">
+                    <button onclick="changeMealDate(-1)" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition">
+                        <i class="fas font-bold fa-chevron-left"></i>
+                    </button>
+                    <input type="date" id="meal-date-picker" onchange="fetchMealData()" class="border-2 border-amber-300 rounded-xl px-3 py-1.5 font-jua text-sm focus:outline-none focus:border-amber-500 text-slate-700">
+                    <button onclick="changeMealDate(1)" class="p-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 transition">
+                        <i class="fas font-bold fa-chevron-right"></i>
+                    </button>
+                    <button onclick="resetMealDateToToday()" class="px-3 py-1.5 bg-amber-400 hover:bg-amber-500 text-indigo-950 font-jua text-xs rounded-xl shadow-sm transition">
+                        오늘
+                    </button>
+                </div>
+            </div>
+
+            <!-- 급식 내용 카드 -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- 오늘 식단 안내 Card (2 columns wide on md) -->
+                <div class="md:col-span-2 bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-6 shadow-inner relative overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-baseline mb-4">
+                            <h3 id="meal-date-title" class="font-jua text-xl text-amber-900">2026년 10월 27일 급식</h3>
+                            <span id="meal-cal" class="text-xs font-bold bg-amber-200 text-amber-800 px-3 py-1 rounded-full">칼로리 정보 불러오는 중...</span>
+                        </div>
+
+                        <div id="meal-content" class="min-h-[160px] flex items-center justify-center">
+                            <div class="text-center text-slate-400 py-8">
+                                <i class="fas fa-spinner fa-spin text-3xl mb-2 text-amber-500"></i>
+                                <p class="text-sm font-jua">나이스 API에서 내덕초 급식 정보를 받아오고 있어요...</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="text-[11px] text-amber-700/70 mt-4 border-t border-amber-200/60 pt-2">
+                        * 알레르기 유발 식품 표시: 1.난류, 2.우유, 3.메밀, 4.땅콩, 5.대두, 6.밀, 7.고등어, 8.게, 9.새우, 10.돼지고기, 11.복숭아, 12.토마토, 13.아황산염, 14.호두, 15.닭고기, 16.쇠고기, 17.오징어, 18.조개류
+                    </p>
+                </div>
+
+                <!-- Lara쌤의 식습관 스티커/메시지 -->
+                <div class="bg-indigo-50 border-2 border-indigo-100 rounded-2xl p-6 flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">🥗</span>
+                            <h4 class="font-jua text-indigo-900 text-lg">Lara쌤의 급식 영어</h4>
+                        </div>
+                        <p class="text-xs text-indigo-700 leading-relaxed">
+                            오늘 급식 먹을 때 이 표현을 떠올려 봐요!
+                        </p>
+                        <div class="bg-white p-3 rounded-xl border border-indigo-100 space-y-2">
+                            <p class="text-xs font-bold text-slate-500">Today's Expression:</p>
+                            <p class="font-en font-extrabold text-indigo-600 text-base">"It tastes delicious!"</p>
+                            <p class="text-xs text-slate-600">엄마, 선생님! 너무 맛있어요!</p>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-indigo-100 text-center">
+                        <span class="text-xs text-slate-500">오늘 도장을 찍어보세요!</span>
+                        <button onclick="stampDaily()" id="stamp-btn" class="w-full mt-2 py-2 bg-pink-500 hover:bg-pink-600 text-white font-jua rounded-xl text-sm transition shadow">
+                            💮 영단어 & 급식 완료 도장 받기
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-400 py-6 border-t border-slate-700 text-center text-xs mt-12">
+        <div class="max-w-6xl mx-auto px-4 space-y-2">
+            <p class="font-jua text-sm text-slate-300">내덕초등학교 Lara쌤의 즐거운 영어교실</p>
+            <p>공공데이터 API : 교육부 나이스(NEIS) 학교급식식단정보 서비스 연동</p>
+            <p class="text-slate-500">© 2026 Naedeok Elementary School English Class. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- 1. 학년별 영단어 데이터 ---
+        const vocaData = {
+            3: [
+                { word: "apple", meaning: "사과", example: "I like sweet apples." },
+                { word: "school", meaning: "학교", example: "Welcome to Naedeok school!" },
+                { word: "friend", meaning: "친구", example: "Lara is my good friend." },
+                { word: "book", meaning: "책", example: "Open your English book." },
+                { word: "happy", meaning: "행복한", example: "I am very happy today." }
+            ],
+            4: [
+                { word: "pencil", meaning: "연필", example: "Can I borrow your pencil?" },
+                { word: "weather", meaning: "날씨", example: "How is the weather today?" },
+                { word: "summer", meaning: "여름", example: "Summer is hot and sunny." },
+                { word: "family", meaning: "가족", example: "I love my family very much." },
+                { word: "listen", meaning: "듣다", example: "Listen carefully to Lara쌤!" }
+            ],
+            5: [
+                { word: "breakfast", meaning: "아침식사", example: "Don't skip your breakfast." },
+                { word: "favorite", meaning: "가장 좋아하는", example: "English is my favorite subject." },
+                { word: "tomorrow", meaning: "내일", example: "See you again tomorrow!" },
+                { word: "delicious", meaning: "맛있는", example: "Today's lunch is delicious." },
+                { word: "together", meaning: "함께", example: "Let's study English together." }
+            ],
+            6: [
+                { word: "experience", meaning: "경험", example: "It was a wonderful experience." },
+                { word: "important", meaning: "중요한", example: "Health is very important." },
+                { word: "future", meaning: "미래", example: "What is your dream in the future?" },
+                { word: "practice", meaning: "연습하다", example: "Practice English every day." },
+                { word: "challenge", meaning: "도전", example: "Take a new challenge today!" }
+            ]
+        };
+
+        let currentGrade = 3;
+        let hideMeaning = false;
+
+        // 학년 변경
+        function setGrade(grade) {
+            currentGrade = grade;
+            
+            // Tab active style
+            document.querySelectorAll('.grade-tab').forEach(tab => {
+                tab.className = "grade-tab px-4 py-2 rounded-2xl font-jua text-sm transition bg-slate-100 text-slate-600 hover:bg-indigo-50";
+            });
+            const activeTab = document.getElementById(`tab-${grade}`);
+            if(activeTab) {
+                activeTab.className = "grade-tab px-4 py-2 rounded-2xl font-jua text-sm transition bg-indigo-600 text-white shadow-md";
+            }
+
+            document.getElementById('current-grade-label').innerText = `[${grade}학년] Lara쌤이 추천하는 오늘의 5단어`;
+            renderVocaCards();
+            setupQuiz();
+        }
+
+        // 단어 카드 렌더링
+        function renderVocaCards() {
+            const grid = document.getElementById('voca-grid');
+            grid.innerHTML = '';
+
+            const list = vocaData[currentGrade];
+            list.forEach((item, index) => {
+                const card = document.createElement('div');
+                card.className = "card-flip h-44 cursor-pointer";
+                card.onclick = function() { this.classList.toggle('flipped'); };
+
+                const inner = document.createElement('div');
+                inner.className = "card-flip-inner relative w-full h-full rounded-2xl shadow-md border border-slate-100 bg-gradient-to-br from-indigo-50/50 to-white p-5 flex flex-col justify-between";
+
+                inner.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <span class="w-7 h-7 bg-indigo-100 text-indigo-700 font-jua text-xs flex items-center justify-center rounded-full font-bold">
+                            0${index + 1}
+                        </span>
+                        <button onclick="event.stopPropagation(); speakWord('${item.word}')" class="p-2 bg-yellow-100 hover:bg-yellow-200 text-yellow-800 rounded-xl text-xs font-bold transition flex items-center gap-1">
+                            🔊 발음
+                        </button>
+                    </div>
+
+                    <div class="text-center my-auto">
+                        <h4 class="text-2xl font-extrabold font-en text-indigo-950">${item.word}</h4>
+                        <p class="voca-meaning text-sm font-jua text-slate-600 mt-1 ${hideMeaning ? 'opacity-0' : 'opacity-100'} transition-opacity">
+                            ${item.meaning}
+                        </p>
+                    </div>
+
+                    <p class="text-[11px] text-slate-400 font-en italic truncate text-center">
+                        "${item.example}"
+                    </p>
+                `;
+
+                card.appendChild(inner);
+                grid.appendChild(card);
+            });
+        }
+
+        // 뜻 가리기 토글
+        function toggleMeanings() {
+            hideMeaning = document.getElementById('toggle-meaning').checked;
+            document.querySelectorAll('.voca-meaning').forEach(el => {
+                if(hideMeaning) el.classList.add('opacity-0');
+                else el.classList.remove('opacity-0');
+            });
+        }
+
+        // TTS 발음 듣기
+        function speakWord(text) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85; // 어린이용 느린 발음
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert('이 브라우저는 음성 재생을 지원하지 않아요.');
+            }
+        }
+
+
+        // --- 2. 영단어 퀴즈 모드 ---
+        let quizIndex = 0;
+        let quizScore = 0;
+        let currentQuizList = [];
+
+        function setupQuiz() {
+            quizIndex = 0;
+            quizScore = 0;
+            currentQuizList = [...vocaData[currentGrade]].sort(() => Math.random() - 0.5);
+            showQuizQuestion();
+        }
+
+        function showQuizQuestion() {
+            if (quizIndex >= currentQuizList.length) {
+                // 퀴즈 종료
+                document.getElementById('quiz-card').innerHTML = `
+                    <div class="py-6 space-y-4">
+                        <div class="text-5xl">🎉</div>
+                        <h3 class="text-2xl font-jua text-indigo-900">참 잘했어요!</h3>
+                        <p class="text-sm text-slate-600">총 점수: <span class="font-bold text-pink-600 text-xl">${quizScore}</span> / ${currentQuizList.length * 20}점</p>
+                        <p class="text-xs text-indigo-500">Lara쌤: "꾸준히 공부하는 네가 정말 자랑스러워!"</p>
+                        <button onclick="setupQuiz()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-jua rounded-2xl shadow transition text-sm">
+                            🔄 다시 풀기
+                        </button>
+                    </div>
+                `;
+                return;
+            }
+
+            const current = currentQuizList[quizIndex];
+            document.getElementById('quiz-progress').innerText = `문제 ${quizIndex + 1} / ${currentQuizList.length}`;
+            document.getElementById('quiz-score').innerText = `점수: ${quizScore}점`;
+            document.getElementById('quiz-word').innerText = current.word;
+            document.getElementById('quiz-tts-btn').onclick = () => speakWord(current.word);
+
+            // 오답 보기 생성 (다른 단어의 뜻)
+            const allMeanings = Object.values(vocaData).flat().map(v => v.meaning);
+            const wrongOptions = allMeanings.filter(m => m !== current.meaning).sort(() => Math.random() - 0.5).slice(0, 2);
+            const options = [current.meaning, ...wrongOptions].sort(() => Math.random() - 0.5);
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            options.forEach(opt => {
+                const btn = document.createElement('button');
+                btn.className = "w-full py-3 px-4 bg-slate-50 hover:bg-indigo-50 border border-slate-200 text-slate-700 font-jua text-sm rounded-xl transition text-left flex justify-between items-center";
+                btn.innerHTML = `<span>${opt}</span> <i class="fas fa-chevron-right text-xs text-slate-300"></i>`;
+                btn.onclick = () => checkQuizAnswer(opt === current.meaning, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkQuizAnswer(isCorrect, btn) {
+            if (isCorrect) {
+                btn.className = "w-full py-3 px-4 bg-green-500 text-white font-jua text-sm rounded-xl transition text-left flex justify-between items-center";
+                quizScore += 20;
+            } else {
+                btn.className = "w-full py-3 px-4 bg-rose-500 text-white font-jua text-sm rounded-xl transition text-left flex justify-between items-center";
+            }
+
+            setTimeout(() => {
+                quizIndex++;
+                showQuizQuestion();
+            }, 800);
+        }
+
+
+        // --- 3. 공공 API 내덕초 급식 정보 연결 ---
+        let selectedMealDate = new Date();
+
+        function getFormattedDate(date) {
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0');
+            const dd = String(date.getDate()).padStart(2, '0');
+            return `${yyyy}${mm}${dd}`;
+        }
+
+        function updateDatePickerInput() {
+            const yyyy = selectedMealDate.getFullYear();
+            const mm = String(selectedMealDate.getMonth() + 1).padStart(2, '0');
+            const dd = String(selectedMealDate.getDate()).padStart(2, '0');
+            document.getElementById('meal-date-picker').value = `${yyyy}-${mm}-${dd}`;
+            document.getElementById('meal-date-title').innerText = `${yyyy}년 ${selectedMealDate.getMonth() + 1}월 ${selectedMealDate.getDate()}일 급식`;
+        }
+
+        function changeMealDate(days) {
+            selectedMealDate.setDate(selectedMealDate.getDate() + days);
+            updateDatePickerInput();
+            fetchMealData();
+        }
+
+        function resetMealDateToToday() {
+            selectedMealDate = new Date();
+            updateDatePickerInput();
+            fetchMealData();
+        }
+
+        async function fetchMealData() {
+            const dateInput = document.getElementById('meal-date-picker').value;
+            if (dateInput) {
+                const parts = dateInput.split('-');
+                selectedMealDate = new Date(parts[0], parts[1] - 1, parts[2]);
+            }
+            updateDatePickerInput();
+
+            const ymd = getFormattedDate(selectedMealDate);
+            const mealContent = document.getElementById('meal-content');
+            const mealCal = document.getElementById('meal-cal');
+
+            mealContent.innerHTML = `
+                <div class="text-center text-slate-400 py-8">
+                    <i class="fas fa-spinner fa-spin text-3xl mb-2 text-amber-500"></i>
+                    <p class="text-sm font-jua">나이스 API에서 내덕초 급식 정보를 받아오고 있어요...</p>
+                </div>
+            `;
+            mealCal.innerText = "조회 중...";
+
+            // NEIS 공공 API 파라미터 (경상남도교육청: S10, 내덕초등학교 행정표준코드: 9010243)
+            const ATPT_OFCDC_SC_CODE = "S10"; // 경상남도교육청
+            const SD_SCHUL_CODE = "9010243";   // 내덕초등학교 (김해 내덕초)
+            const url = `https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json&pIndex=1&pSize=100&ATPT_OFCDC_SC_CODE=${ATPT_OFCDC_SC_CODE}&SD_SCHUL_CODE=${SD_SCHUL_CODE}&MLSV_YMD=${ymd}`;
+
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.mealServiceDietInfo) {
+                    const row = data.mealServiceDietInfo[1].row[0];
+                    // 요리명 정제 (<br/> 태그 및 알레르기 숫자 정제)
+                    let dishList = row.DDISH_NM.split('<br/>').map(dish => {
+                        return dish.trim();
+                    });
+
+                    mealCal.innerText = `🔥 ${row.CAL_INFO || '칼로리 정보 없음'}`;
+
+                    mealContent.innerHTML = `
+                        <ul class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full text-slate-800 font-jua">
+                            ${dishList.map(dish => `
+                                <li class="bg-white/80 backdrop-blur-sm p-3 rounded-xl border border-amber-200/80 shadow-sm flex items-center gap-2">
+                                    <span class="text-amber-500 text-xs">●</span>
+                                    <span class="text-sm md:text-base">${dish}</span>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    `;
+                } else {
+                    mealCal.innerText = "급식 휴무일";
+                    mealContent.innerHTML = `
+                        <div class="text-center py-6 text-slate-500">
+                            <span class="text-4xl block mb-2">🏖️</span>
+                            <p class="font-jua text-base">오늘은 급식이 없거나 주말/공휴일입니다.</p>
+                            <p class="text-xs text-slate-400 mt-1">다른 날짜를 선택해서 급식을 확인해보세요!</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                console.error("급식 API 오류:", error);
+                mealCal.innerText = "연동 실패";
+                mealContent.innerHTML = `
+                    <div class="text-center py-6 text-slate-500">
+                        <span class="text-3xl block mb-2">⚠️</span>
+                        <p class="font-jua text-sm text-rose-500">급식 정보를 불러오는데 실패했습니다.</p>
+                        <p class="text-xs text-slate-400 mt-1">네트워크 상태를 확인해주세요.</p>
+                    </div>
+                `;
+            }
+        }
+
+        // 스티커 도장 받기
+        function stampDaily() {
+            const btn = document.getElementById('stamp-btn');
+            btn.innerHTML = "🎉 오늘 도장 받기 완료! ⭐";
+            btn.className = "w-full mt-2 py-2 bg-emerald-500 text-white font-jua rounded-xl text-sm shadow";
+            btn.disabled = true;
+        }
+
+        function scrollToSection(id) {
+            document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // 초기화
+        window.onload = function() {
+            setGrade(3);
+            updateDatePickerInput();
+            fetchMealData();
+        };
+    </script>
+</body>
+</html>
